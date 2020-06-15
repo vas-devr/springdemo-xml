@@ -7,26 +7,21 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
     
-    <!--  load properties file from classpath -->
-    <context:property-placeholder location="classpath:sports.properties"/>
+    <!--  Custom bean processor -->
+    <bean id="customProcessor" class="dev.tutorial.springdemo.lifecycle.prototype.CustomBeanProcessor"></bean>
     
+    
+    <!-- beans for services -->
     <bean id="myFortuneService" 
     		class="dev.tutorial.springdemo.HappyFortuneService">
     </bean>
-    <bean id="randomFortune" 
-    		class="dev.tutorial.springdemo.RandomFortuneService"/>
     
+    <!-- beans for classes -->
     <bean id="myCoach"
-    		class="dev.tutorial.springdemo.BaseballCoach">
-    		<constructor-arg ref= "randomFortune"/>
-    </bean>
+    	class="dev.tutorial.springdemo.TrackCoach"
+    	 init-method="myStartup"
+    	 destroy-method="myDestroy"
+    	>
+    </bean> <!-- by default singleton -->
     
-    <bean id="myOtherCoach"
-    		class="dev.tutorial.springdemo.CricketCoach">
-    	<property name="fortuneService" ref="myFortuneService" />
-    	<property name="emailAddress" value="${sport.emailid}"/>
-    	<property name="team" value="${sport.team}"/>
-    </bean>
-   
-   
 </beans>

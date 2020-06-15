@@ -28,11 +28,15 @@ public class MyApp {
 	
 	public static void main(String... args) {
 		
+		
 		//create new Object
 		Coach theCoach = new TrackCoach();
 		
 		//use the object 
 		System.out.println(theCoach.getDailyWorkout());
+		
+		//use fortune service
+		System.out.println ( theCoach.getDailyFortune () );
 	}
 
 }
